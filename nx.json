@@ -11,6 +11,12 @@
     ],
     "sharedGlobals": []
   },
+  "targetDefaults": {
+    "version": {
+      "cache": true,
+      "inputs": [{ "runtime": "node -v" }]
+    }
+  },
   "plugins": [
     {
       "plugin": "@nx/vite/plugin",
