@@ -16,8 +16,12 @@ launch-templates:
           BASE_BRANCH: 'main'
       - name: Install Node 18
         script: |
+          which node
+          node -v
           curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
           sudo apt-get install -y nodejs
+          which node
+          node -v
       - name: Install Node Modules
         uses: 'nrwl/nx-cloud-workflows/v3.1/workflow-steps/install-node-modules/main.yaml'
       - name: Install Browsers (if needed)
