@@ -1,5 +1,5 @@
 {
-  "bust": 6,
+  "bust": 7,
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
     "default": ["{projectRoot}/**/*", "sharedGlobals"],
