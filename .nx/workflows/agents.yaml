@@ -14,17 +14,10 @@ launch-templates:
           KEY: 'package-lock.json|yarn.lock|pnpm-lock.yaml'
           PATHS: 'node_modules'
           BASE_BRANCH: 'main'
-      - name: Install nvm
+      - name: Install Node 18
         script: |
-          which nvm
-
-          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash | echo $?
-
-          echo 'export NVM_DIR="$HOME/.nvm"' >> ${HOME}/.profile
-          echo '[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"' >> ${HOME}/.profile
-          echo '[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"' >> ${HOME}/.profile
-          source ${HOME}/.profile
-          nvm install
+          curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+          sudo apt-get install -y nodejs
       - name: Install Node Modules
         uses: 'nrwl/nx-cloud-workflows/v3.1/workflow-steps/install-node-modules/main.yaml'
       - name: Install Browsers (if needed)
