@@ -14,12 +14,16 @@ launch-templates:
           KEY: 'package-lock.json|yarn.lock|pnpm-lock.yaml'
           PATHS: 'node_modules'
           BASE_BRANCH: 'main'
-      - name: Install Node Version
+      - name: Install nvm
         script: |
+
           curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash 
-          echo $NVM_DIR
-          export NVM_DIR="$HOME/.nvm"
-          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+          mkdir ${HOME}/.nvm
+
+          echo 'export NVM_DIR="$HOME/.nvm"' >> ${HOME}/.profile
+          echo '[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"' >> ${HOME}/.profile
+          echo '[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"' >> ${HOME}/.profile
+          source ${HOME}/.profile
           which nvm
           nvm install
       - name: Install Node Modules
