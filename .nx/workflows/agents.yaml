@@ -20,8 +20,8 @@ launch-templates:
           node -v
           # remove previous node install
           sudo apt-get purge nodejs
-          sudp rm -r /etc/apt/sources.list.d/nodesource.list
-          sudp rm -r /etc/apt/keyrings/nodesource.gpg
+          sudo rm -r /etc/apt/sources.list.d/nodesource.list
+          sudo rm -r /etc/apt/keyrings/nodesource.gpg
           # install new node version
           curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
           sudo apt-get install -y nodejs
