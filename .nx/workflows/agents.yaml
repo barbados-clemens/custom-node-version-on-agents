@@ -19,7 +19,8 @@ launch-templates:
           echo "Before: $(which node) $(node -v)"
           which node
           curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh
-          sh ./install.sh
+          ls
+          bash ./install.sh
 
           souce ~/.profile
           echo "After: $(which node) $(node -v)"
