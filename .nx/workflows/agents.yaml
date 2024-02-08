@@ -5,6 +5,9 @@ launch-templates:
     resource-class: 'docker_linux_amd64/medium'
     image: 'ubuntu22.04-node20.9-v3'
     init-steps:
+      # copied from: https://github.com/nrwl/nx-cloud-workflows/blob/main/launch-templates/linux.yaml
+      - name: Checkout
+        uses: 'nrwl/nx-cloud-workflows/v3.1/workflow-steps/checkout/main.yaml'
       - name: Install nvm
         script: |
           which nvm
@@ -16,9 +19,6 @@ launch-templates:
           echo '[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"' >> ${HOME}/.profile
           source ${HOME}/.profile
           nvm install
-      # copied from: https://github.com/nrwl/nx-cloud-workflows/blob/main/launch-templates/linux.yaml
-      - name: Checkout
-        uses: 'nrwl/nx-cloud-workflows/v3.1/workflow-steps/checkout/main.yaml'
       - name: Restore Node Modules Cache
         uses: 'nrwl/nx-cloud-workflows/v3.1/workflow-steps/cache/main.yaml'
         env:
