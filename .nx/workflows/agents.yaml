@@ -18,6 +18,7 @@ launch-templates:
           BASE_BRANCH: 'main'
       - name: Install Node Version
         script: |
+          mkdir -p "$HOME/.nvm"
           curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash 
           echo $NVM_DIR
           export NVM_DIR="$HOME/.nvm"
