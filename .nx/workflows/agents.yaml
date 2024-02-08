@@ -17,13 +17,19 @@ launch-templates:
       - name: Install Node 18
         script: |
           echo "Before: $(which node) $(node -v)"
+
           which node
           curl -O https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh
           ls -a
           set +e
           bash ./install.sh
-          export NVM_DIR="$HOME/.nvm"
-          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
+          echo 'export NVM_DIR="$HOME/.nvm"' >> ${HOME}/.profile
+          echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' >> ${HOME}/.profile
+          echo '[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"' >> ${HOME}/.profile
+
+          source ~/.profile
+
           nvm install
           echo "After: $(which node) $(node -v)"
       - name: Install Node Modules
