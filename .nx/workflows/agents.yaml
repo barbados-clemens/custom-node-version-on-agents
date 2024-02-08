@@ -16,18 +16,13 @@ launch-templates:
           BASE_BRANCH: 'main'
       - name: Install Node 18
         script: |
+          echo "Before: $(which node) $(node -v)"
           which node
-          node -v
-          # remove previous node install
-          sudo apt-get purge nodejs
-          # sudo rm -r /etc/apt/sources.list.d/nodesource.list
-          # sudo rm -r /etc/apt/keyrings/nodesource.gpg
-          # install new node version
-          curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-          sudo apt-get install -y nodejs
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh
+          sh ./install.sh
 
-          which node
-          node -v
+          souce ~/.profile
+          echo "After: $(which node) $(node -v)"
       - name: Install Node Modules
         uses: 'nrwl/nx-cloud-workflows/v3.1/workflow-steps/install-node-modules/main.yaml'
       - name: Install Browsers (if needed)
