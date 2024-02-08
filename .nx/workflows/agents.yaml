@@ -20,6 +20,7 @@ launch-templates:
           which node
           curl -O https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh
           ls
+          set +e
           bash ./install.sh
 
           souce ~/.profile
