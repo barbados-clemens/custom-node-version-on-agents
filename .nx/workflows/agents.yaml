@@ -4,6 +4,8 @@ launch-templates:
     # https://nx.dev/ci/reference/launch-templates#resource-classes
     resource-class: 'docker_linux_amd64/medium'
     image: 'ubuntu22.04-node20.9-v3'
+    env:
+      NVM_DIR: '$HOME/.nvm'
     init-steps:
       # copied from: https://github.com/nrwl/nx-cloud-workflows/blob/main/launch-templates/linux.yaml
       - name: Checkout
@@ -17,6 +19,9 @@ launch-templates:
       - name: Install Node Version
         script: |
           curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash 
+          echo $NVM_DIR
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
           which nvm
           nvm install
       - name: Install Node Modules
